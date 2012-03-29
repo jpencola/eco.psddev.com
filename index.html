@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<title>Perfect Sense | EcoSystem</title>
+		<link rel="stylesheet" href="styles/global.css" type="text/css">
+		<link rel="shortcut icon" href="favicon.ico">
+		<script src="js/head.min.js"></script>
+	</head>
+	<body>
+		<div id="new" class="hide">
+			<div class="form"><label for="enter_name">please enter your name</label><input type="text" placeholder="first last" autofocus/><input type="submit" value="Okay!"></div>
+		</div>
+		<div id="wrapper">
+			<div id="header">
+				<h1><a href="#">Perfect Ecosystem | Perfect Sense Digital</a> <span class="title"><span class="year"></span> Employee Ecosystem</span></h1>
+				<span class="user"</span>
+			</div>
+			<div id="application">
+				<div id="notebox"></div>
+				<div id="sections">
+					<section>
+						<a data-category="cat-bi" href="#business-intelligence"><span class="arrowBack"></span>Business Intelligence</a>
+						<ul class="data-items"></ul>
+						<div class="shadow"></div>
+					</section>
+					<section>
+						<a data-category="cat-ci" href="#creativity-and-innovation"><span class="arrowBack"></span>Creativity &amp; Innovation</a>
+						<ul class="data-items"></ul>
+						<div class="shadow"></div>
+					</section>
+					<section>
+						<a data-category="cat-qo" href="#quality-and-ownership"><span class="arrowBack"></span>Quality &amp; Ownership</a>
+						<ul class="data-items"></ul>
+						<div class="shadow"></div>
+					</section>
+					<section>
+						<a data-category="cat-cl" href="#communication-and-leadership"><span class="arrowBack"></span>Communication &amp; Leadership</a>
+						<ul class="data-items"></ul>
+						<div class="shadow"></div>
+					</section>
+				</div>
+				<div id="me"><h1></h1></div>
+				<div id="categories">
+					<a href="#" class="category cat-bi" data-category="cat-bi">
+						<div class="icon"></div>
+						<h3 class="title">Business Intelligence</h3>
+						<div class="glow"></div>
+					</a>
+					<a href="#" class="category cat-ci" data-category="cat-ci">
+						<div class="icon"></div>
+						<h3 class="title">Creativity &amp; Innovation</h3>
+						<div class="glow"></div>
+					</a>
+					<a href="#" class="category cat-qo" data-category="cat-qo">
+						<div class="icon"></div>
+						<h3 class="title">Quality &amp; Ownership</h3>
+						<div class="glow"></div>
+					</a>
+					<a href="#" class="category cat-cl" data-category="cat-cl">
+						<div class="icon"></div>
+						<h3 class="title">Communication &amp; Leadership</h3>
+						<div class="glow"></div>
+					</a>
+				</div>
+			</div>
+			<ul id="menu">
+				<li class="exports">
+					<a href="#">Export</a>
+					<ul>
+						<li class="title">Save as...</li>
+						<li class="seperator"> - </li>
+						<li><a href="#to-pdf">To PDF</a></li>
+						<li><a href="#to-jpg">To JPG</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#ecoystem">Ecosystem</a>
+					<ul>
+						<li class="title">Menu</li>
+						<li class="seperator"> - </li>
+						<li><a href="#add-categories">Add Categories</a></li>
+						<li><a href="#edit-categories">Edit Categories</a></li>
+					</ul>
+				</li>
+				<li class="filters">
+					<a href="#">Filter</a>
+					<ul>
+						<li class="title">Show/Hide</li>
+						<li class="seperator"> - </li>
+						<li><a href="#show-q1">Quarter One<span class="toggle off"></span></a></li>
+						<li><a href="#show-q2">Quarter Two<span class="toggle off"></span></a></li>
+						<li><a href="#show-q3">Quarter Three<span class="toggle off"></span></a></li>
+						<li><a href="#show-q4">Quarter Four<span class="toggle off"></span></a></li>
+						<li class="seperator"> - </li>
+						<li><a href="#show-business-intelligence">Business Intelligence <span class="toggle off"></span></a></li>
+						<li><a href="#show-creativity-and-innovation">Creativity &amp; Innovation <span class="toggle off"></span></a></li>
+						<li><a href="#show-quality-and-ownership">Quality &amp; Ownership <span class="toggle off"></span></a></li>
+						<li><a href="#show-communication-and-leadership">Communication &amp; Leadership <span class="toggle off"></span></a></li>
+					</ul>
+				</li>
+			</ul>
+			
+		</div>
+		<script>
+			head.js(
+				{ "jquery" : "js/jquery.min.js" },
+				{ "store" : "js/store.min.js" },
+				{ "ecosystem" : "js/jquery.ecosystem.js" },
+				function(){
+					$.ecosystem({ 
+						"noteCategories" : {
+							0 : ["Competitive Landscape", "Top Results", "Winning Matters", "Competition", "Proof points", "Understanding Our Business", "Understanding Our Customer", "Understanding Our Client's Business", "Data Matters", "Planning Estimates", "Results Matter"],
+							1 : ["Go Above What's Required", "Not The Obvious", "Alternative", "Beautiful", "Open To New Ideas", "Easier To Understand", "Simplicity", "Different", "Make Someone Smile", "Willing To Take A Risk", "Put In The Time"],
+							2 : ["Responsibility", "Take Extra Time To Check Your Work", "Commitment To Excellence", "Extra Effort", "It's My Job", "Accountability", "Pride of Ownership", "Better Than The Last Time", "Peer Review", "Creating Good Work Habits", "something", "Polished", "Commitment to Excellence"],
+							3 : ["Not Defensive", "Clarity", "Finding Answers", "The Next Question's Answer", "Transparency", "Energetic", "We Matter", "It's My Problem", "Pride", "Teamwork", "Never Let Someone Down", "No Ambiguity"]
+						}
+					});
+				}
+			);
+		</script>
+	</body>
+</html>

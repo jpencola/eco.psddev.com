@@ -1,0 +1,44 @@
+@import "_vars";
+
+.lt-1280 #categories {
+	width: 620px;
+	height: 300px;
+	margin-top:-260px;
+	margin-left:-420px;
+	
+	&.animate {
+		margin-top:-150px;
+		margin-left:-310px;	
+	}
+	
+	.category {
+		width: 270px;
+		height: 110px;
+
+		h3.title {
+			font-size:22px;
+		}
+		.icon {
+			margin:5px auto 0;
+			width:64px;
+			height:64px;
+			@include background-size(cover);
+		}
+		.glow {
+			@include background-size(cover);
+			height: 110px;
+		    width: 270px;
+		}
+	}
+}
+
+.lt-1280 #sections {
+	section {
+		> a {
+			font-size:22px;
+			&.isSelected {
+				font-size:25px;
+			}
+		}
+	}
+}

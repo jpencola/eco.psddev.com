@@ -1,0 +1,49 @@
+@import "_vars";
+
+#menu {
+	@include pie-clearfix;
+	position:fixed;
+	bottom:0;
+	right:15px;
+	width:100%;
+	color:#fff;
+	li {
+		float:right;
+		&.session {
+			margin-left:5px;
+			> a {
+				border-right-color:#ccc;	
+			}
+		}
+		&.exports a {
+			border-right-color:#ccc;
+		}
+		> a {
+			display:block;
+			background:#efefef;
+			@include background(linear-gradient(bottom, #efefef, #fff));
+			padding:5px 9px;
+			border-right:1px solid #fff;
+			border-left:1px solid #ccc;
+			border-top:1px solid #ccc;
+			text-decoration:none;
+			color:#999;
+			text-shadow:0 1px 0px #fff;
+			&:hover {
+				color:#666;
+			}
+			&:active, &.open {
+				color:#efefef;
+				background:#5B5B5B;
+				@include background(linear-gradient(bottom, #5B5B5B, #2D2D2D));
+				border-top-color:#333;
+				border-left-color:#333;
+				border-right-color:#777;
+				text-shadow:0 1px 3px #000;
+			}
+		}
+		> ul {
+			display:none;
+		}
+	}
+}

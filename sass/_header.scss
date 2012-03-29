@@ -1,0 +1,32 @@
+@import "_vars";
+
+#header  {
+	position:relative;
+	> h1 a {
+		background: url($documentLogo) ;
+	    display: block;
+	    height: 29px;
+	    text-indent: -9999px;
+	    width: 212px;
+		margin:15px;
+	}
+	
+	> h1 {
+		position:relative;
+		.title {
+		    color: #F1B241;
+		    font-size: 20px;
+		    left: 240px;
+		    position: absolute;
+		    top: 10px;
+		}
+	}
+	
+	.user {
+		position:absolute;
+		right:25px;
+		top:13px;
+		font-size:16px;
+		color:$dark;
+	}
+}

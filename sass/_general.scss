@@ -1,0 +1,124 @@
+@import "_vars";
+
+body, html { min-height:100%; position:relative;}
+body { background: url($documentBackground); font-size:12px; font-family: 'Didact Gothic', sans-serif; line-height:100%; font-weight:normal; color:$font; }
+a { color:$blue; &:hover { color:#26A4BC; } }
+
+/* @extend .clear; */
+.clear { @include pie-clearfix(); }
+
+/* @extend .radius; */
+.radius { @include border-radius(6px); }
+.hide {display:none;}
+.error { color:#FF0000; padding:8px 15px 8px; line-height:14px; background:#EFFF79; margin:10px 0 0 0; @extend .radius;}
+
+/* @mixin position("fixed || static", [top || 0], [right || 0], [bottom || 0], [left || 0]) */
+@mixin position($type, $top, $right, $bottom, $left) {
+	position: $type;
+	@if $top != 0 {
+		top: $top;
+	}
+	@if $right != 0 {
+		right: $right;
+	}
+	@if $bottom != 0 {
+		bottom: $bottom;
+	}
+	@if $left != 0 {
+		left: $left;
+	}
+}
+
+
+#sections section {
+	&:nth-child(2n){
+		.section-loader {float:right; margin-right:50px; margin-left:0;}
+	}
+}
+
+#new {
+	background: rgba(255,255,255,.7) url($diagonalBackground);
+    display: block;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+	opacity:0;
+	z-index:0;
+
+	@include transition-property(opacity); 
+  	@include transition-duration(600ms);
+	@include transition-timing-function(ease);
+
+	.form {
+		width:250px;
+		height:170px;
+		@extend .radius;
+		border:6px solid $dark;
+		background:$white;
+		margin-top:-97px;
+		margin-left:-137px;
+		position:absolute;
+		left:50%;
+		top:50%;
+		
+		label {
+			display:block;
+			font-size:20px;
+			text-align:center;
+			color:$yellow;
+			line-height:26px;
+			margin:23px 0 0;
+		}
+		
+		input[type=text] {
+			width: 200px;
+			background: $white;
+		    border: 1px solid $light;
+		    color: $dark;
+		    display: block;
+		    font-size: 13px;
+		    margin: 10px auto 10px;
+		    padding: 10px;
+			text-align:center;
+		}
+		
+		input[type=submit] {
+			background:$blue;
+			font-size:13px;
+			font-weight:bold;
+			text-align:center;
+			display:block;
+			padding:9px 18px;
+			margin:0 auto;
+			border:none;
+			color:$white;
+			@extend .radius;
+			width:85px;
+			cursor:pointer;
+			
+			&:hover {
+				background:$hover;
+			}
+		}
+	}
+}
+
+.new-user #wrapper {
+	opacity:0;
+}
+
+#wrapper {
+	opacity:1;
+	@include transition-property(all); 
+  	@include transition-duration(300ms);
+	@include transition-timing-function(ease-in);
+}
+
+.new-user #new {
+	opacity:1;
+	z-index:1000;
+}

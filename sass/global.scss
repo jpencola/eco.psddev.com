@@ -1,0 +1,385 @@
+@import url(http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope|Didact+Gothic&v2);
+
+@import "compass/reset";
+@import "_vars";
+
+/* General styles */
+@import "_general";
+
+/* Menu styles */
+@import "_menu";
+
+/* Header styles */
+@import "_header";
+
+/* Modules styles */
+@import "_modules";
+
+/* fluid styles */
+@import "_fluid";
+
+
+#application {
+	@extend .clear;
+	@extend .radius;
+	border:1px solid $border;
+	background: $white;
+	margin:0 15px; 
+	> div section {
+		overflow: hidden;
+		width:50%;
+		float:left;
+		position: relative;
+	    z-index: 10;
+	
+		/* borders */
+		&:nth-child(1) { border-right:1px solid $border; border-bottom:1px solid $border;  margin-right:-1px; margin-bottom:-1px; }
+		&:nth-child(4) { border-left:1px solid $border; border-top:1px solid $border; margin-left:-1px; margin-top:-1px; }
+		&:nth-child(2n) > a { right:0; > span.arrowBack{ @include background(url("images/arrow-right.png")); @include background-size(cover); right: -20px; left: auto; } }
+		&:nth-child(2n) { .data-items > li {float:right;} .data-info { left:auto; right:0; } }
+		
+		> a {
+			display:inline-block;
+			font-size:28px;
+			margin:55px;
+			font-family: 'Annie Use Your Telescope', arial, serif;
+			text-decoration:none;
+			opacity: .4;
+			position:absolute;
+			
+			@include transition-property(all); 
+		  	@include transition-duration(400ms);
+			@include transition-timing-function(ease);
+			
+			&.isSelected {
+				color:black;
+				opacity:1!important;
+				font-size:30px;
+			}
+			
+			> span.arrowBack {
+				@include transition-property(all); 
+			  	@include transition-duration(400ms);
+				left: -20px; 
+				right: auto;
+				@include background(url("images/arrow-left.png"));
+				@include background-size(cover);
+				display: block;
+				opacity:0;
+			    height: 32px;
+			    position: absolute;
+			    top: -10px;
+			    width: 32px;
+			}
+		}
+		
+		&:hover > a {
+			opacity:1;
+		}
+		
+		> div.shadow{
+			pointer-events:none;
+			width:100%;
+			position:absolute;
+			bottom:0;
+			height:55px;
+			@include background(linear-gradient(bottom, rgba(255,255,255,1), rgba(255,255,255,.0)));
+		}
+	}
+	
+	
+	.data-items {
+		@extend .clear;
+		margin:100px 25px 0 55px;
+		> li {
+			float:left;
+			position:relative;
+			margin-right:9px;
+			margin-bottom:9px;
+			
+			&.active > a {
+				background:$yellow;
+				border:1px solid #E88B00;
+				color:#fff;
+			}
+			
+			> a {
+				@include border-radius(3px);
+				display:block;
+				padding:3px 6px 4px 20px;
+				font-size:12px;
+				text-decoration:none;
+				background:$light;
+				border:1px solid $border;
+				color:$font;
+				
+				@include transition-property(all); 
+			  	@include transition-duration(100ms);
+				@include transition-timing-function(ease);
+				
+				&:hover {
+					background:$yellow;
+					border:1px solid #E88B00;
+					color:#fff;
+				}
+			}
+			
+			
+			&:hover {
+				&:before {
+					top:-10px;
+				}
+			}
+			
+			&:before {
+				content: '';
+				position:absolute;
+				left:-1px;
+				top:-8px;
+				width:24px;
+				height:24px;
+				display:block;
+				@include transition-property(all); 
+			  	@include transition-duration(100ms);
+			}
+			
+
+		}
+		
+		> li.Q1:before {
+			@include background(url("images/pin-red.png"));
+			@include background-size(cover);
+		}
+		
+		> li.Q2:before {
+			@include background(url("images/pin-green.png"));
+			@include background-size(cover);
+		}
+		
+		> li.Q3:before {
+			@include background(url("images/pin-yellow.png"));
+			@include background-size(cover);
+		}
+		
+		> li.Q4:before {
+			@include background(url("images/pin-blue.png"));
+			@include background-size(cover);
+		}
+		
+		> li.active .data-info {display:block;}
+		
+		.data-info {
+			@include border-radius(3px);
+			@include box-shadow(0 1px 2px #fff inset, 0 -1px 2px #fff inset, 0 3px 5px #ccc);
+			width: 200px;
+			display:none;
+			position:absolute;
+			left:0;
+			padding:10px;
+			background:$light;
+			border:1px solid $border;
+			z-index:100;
+			
+			.time {
+				display:block;
+				font-size:10px;
+				color:$yellow;
+			}
+			
+			.edit {
+				background: $blue;
+			    border-radius: 4px 4px 4px 4px;
+			    color: $white;
+			    padding: 1px 8px 2px;
+			    position: absolute;
+			    right: 10px;
+				font-size:10px;
+			    text-decoration: none;
+				&:hover {
+					background: $hover;
+				}
+			}
+			
+			.note {
+				margin:10px 0;
+				line-height:18px;
+			}
+			
+			ul {
+				@extend .clear;
+				li {
+					@include border-radius(3px);
+					text-align:center;
+					font-size:10px;
+					display:block;
+					width:20px;
+					height:20px;
+					background:blue;
+					color:#fff;
+					float:left;
+					line-height:20px;
+					margin-right:2px;
+					
+					&.Q1 { background:red; }
+					&.Q2 { background:green; }
+					&.Q3 { background:orange; }
+					&.Q4 { background:teal; }
+				}
+			}
+			
+			ol {
+			    @include box-shadow(0 1px 0 rgba(black, 0.1) inset);
+				text-shadow:0 1px #fff;
+				border-top: 1px solid rgba(255, 255, 255, 0.7);
+			    font-size: 10px;
+			    line-height: 15px;
+			    list-style: disc inside none;
+			    margin: 10px 0 0;
+			    padding: 10px 0 5px;
+			}
+		}
+	}
+}
+
+#me {
+	@extend .radius;
+	@include position(fixed, 50%, 0, 0, 50%);
+	cursor:pointer;
+	background: $blue url($diagonalBackground);
+	color:$white;
+	z-index:101;
+	line-height:100px;
+	text-align:center;
+	width:140px;
+	height:100px;
+	margin-top:-50px;
+	margin-left:-80px;
+	font-size:20px;
+	padding:0 10px;
+	
+	border: 1px solid #555555;
+   	@include box-shadow(0 2px 3px rgba(0, 0, 0, 0.3), 0 -1px 7px rgba(255, 255, 255, 0.6) inset);
+	
+	@include transition-property(all); 
+  	@include transition-duration(400ms);
+
+	&:hover { background-color: $hover; }
+	&.animate { opacity:0; }
+}
+
+#categories {
+	@extend .radius;
+	@include position(fixed, -999px, 0, 0, 50%);
+	
+	width: 840px;
+	height: 520px;
+	margin-top:-260px;
+	margin-left:-420px;
+	
+	opacity:0;
+	background:$light url($modalBackground);
+	border: 1px solid #DFDFDF;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1), inset 0 -6px 3px #EFEFEF, inset 0 1px 2px #FFFFFF;
+	
+	z-index: 100;
+	
+	@include transition-property(opacity); 
+  	@include transition-duration(400ms);
+	@include transition-timing-function(ease);
+
+	&.animate {
+		opacity: 1;
+		z-index: 102;
+		@include position(fixed, 50%, 0, 0, 50%);
+	}
+	
+
+}
+
+#wrapper {
+ 	&.active.show-cat-bi {
+		#sections > section:nth-child(1){
+			border:0;
+			margin:0;
+			width:100%;
+			> a {
+				font-size:32px;
+				color:black!important;
+				opacity:1;
+			}
+		}
+		#sections > section:nth-child(2), #sections > section:nth-child(4), #sections > section:nth-child(3){
+			display:none;
+		}
+		#me {
+			opacity:0;
+			display:none;
+		}
+	}
+	&.active.show-cat-ci {
+		#sections > section:nth-child(2){
+			width:100%;
+			> a {
+				font-size:32px;
+				color:black!important;
+				opacity:1;
+			}
+		}
+		#sections > section:nth-child(1), #sections > section:nth-child(4), #sections > section:nth-child(3){
+			display:none;
+		}
+		#me {
+			opacity:0;
+		}
+	}
+	&.active.show-cat-cl {
+		#sections > section:nth-child(4){
+			width:100%;
+			border:0;
+			margin:0;
+			> a {
+				font-size:32px;
+				color:black!important;
+				opacity:1;
+			}
+		}
+		#sections > section:nth-child(1), #sections > section:nth-child(2), #sections > section:nth-child(3){
+			display:none;
+		}
+		#me {
+			opacity:0;
+		}
+	}
+	&.active.show-cat-qo {
+		#sections > section:nth-child(3){
+			width:100%;
+			> a {
+				font-size:32px;
+				color:black!important;
+				opacity:1;
+			}
+		}
+		#sections > section:nth-child(1), #sections > section:nth-child(4), #sections > section:nth-child(2){
+			display:none;
+		}
+		#me {
+			opacity:0;
+		}
+	}
+}
+
+#wrapper.active #application > div section {
+	&:nth-child(2n) > a {
+		span.arrowBack {
+		    right: -40px;
+			left: auto;
+		}
+	}
+	> a {
+		span.arrowBack {
+			opacity:1;
+		    left: -40px;
+			right:auto;
+		}
+	} 
+}
