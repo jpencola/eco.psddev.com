@@ -1,0 +1,40 @@
+script(type="eco-x/template", data-template="register")
+  div.module.register
+    div.register-wrapper
+      h2.header.yellow Register
+      form#register(name="register", method="post")
+        ul
+          li
+            input(type="text", required, name="name", placeholder="Enter your name...")
+          li
+            input(type="email", required, name="email", placeholder="Enter your email...")
+          li
+            input(type="password", required, name="password", placeholder="Enter a password...")
+          li
+            input(type="password", required, name="cpassword", placeholder="Confirm your password...")
+          li.module-seperator
+          li.action
+            input.btn.blue(type="submit", value="Register!")
+          li.login
+            a.btn.green(href="/") &lsaquo; Back to Login
+
+script(type="eco-x/template", data-template="index", data-template-version="login")
+  div.module.login
+    div.login-wrapper
+      h2.header.yellow Login
+      form#login(name="login", method="post")
+        ul
+          li 
+            input(type="email", required, name="email", placeholder="Enter email...")
+          li
+            input(type="password", required, name="password", placeholder="Enter password...")
+          li.module-seperator
+          li.action
+            input.btn.blue(type="submit", value="Login!")
+          li.register
+            a.btn.green(href="/register") Register &rsaquo;
+
+script(type="eco-x/template", data-template="alert")
+  div#alert(class="{{class}} login")
+    a.close(href="#") Close
+    span {{message}}

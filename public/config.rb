@@ -1,0 +1,9 @@
+http_path = "/"
+css_dir = "styles/"
+css_path = "styles/"
+sass_dir = "sass/"
+images_dir = "styles/images/"
+images_path = "styles/images/"
+relative_assets = true
+output_style = :compressed
+line_comments = false
