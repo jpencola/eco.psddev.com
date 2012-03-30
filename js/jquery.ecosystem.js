@@ -1,10 +1,11 @@
-﻿// jQuery Perfect Sense Eco System
+// jQuery Perfect Sense Eco System
 // A simple plugin to interact with a very specific UI
 // Version 1.1
 // by Erik Zettersten
 
-LOCAL_STORAGE = store.get("notes") || {};
-DEBUG = true;
+var store = window.store;
+window.LOCAL_STORAGE = store.get("notes") || {};
+window.DEBUG = true;
 
 (function ($) {
     $.ecosystem = function (options) {
@@ -27,7 +28,7 @@ DEBUG = true;
 			init: function () {
 				
 				base_ecosystem.listeners();
-				if (store.get("user") != undefined && store.get("user") != '') {
+				if (store.get("user") !== undefined && store.get("user") !== '') {
 					var username = store.get("user");
 					var year = store.get("year");
 					base_ecosystem.meta(username, year);
@@ -35,22 +36,24 @@ DEBUG = true;
 				} else {
 					
 					base_ecosystem.selector.wrapper_element.parent("body").addClass("new-user");
-					$("#new .form input[type=submit]").click(function(){
+                    
+                    
+					$("#new .form > form").submit(function(){
 							var username = $(this).parent().find("input[type=text]").val();
 							var year = new Date();
 
 							year = year.getFullYear();
 
-							if (username != '') {
+							if (username !== '') {
 								base_ecosystem.meta(username, year);
 								base_ecosystem.populate();
 								store.set("user", username);
 								store.set("year", year);
-							};
+							}
 							
 							$("#new").fadeOut("fast", function(){
 								$(this).parent().removeClass("new-user");
-							})
+							});
 					});
 				}
 			},
@@ -140,18 +143,18 @@ DEBUG = true;
 							"quarters" : $this.find("ul li"),
 							"text" : $this.find("p.note").text()
 						};
-					base_ecosystem.method.createInput("", edit)
+					base_ecosystem.method.createInput("", edit);
 				});
 				
 				// 1.9 export json
 				$("li.exports > a").live("click", function () {
-					base_ecosystem.export("json", $(this));
+					base_ecosystem.exports("json", $(this));
 				});
 				
 			},
 			populate : function () {
 				// get data, hide loaders
-				var data = LOCAL_STORAGE,
+				var data = window.LOCAL_STORAGE,
 					html = "",
 					index = null,
 					i = "",
@@ -209,8 +212,8 @@ DEBUG = true;
 			},
 			method : {
 				store : function (note, callback) {
-					LOCAL_STORAGE[note.id] = note;
-					store.set("notes", LOCAL_STORAGE);
+					window.LOCAL_STORAGE[note.id] = note;
+					store.set("notes", window.LOCAL_STORAGE);
 					return callback();
 				},
 				checkCategory : function(){
@@ -220,6 +223,8 @@ DEBUG = true;
 					// TBD
 				},
 				createInput : function (note, edit) {
+                    var html;
+                    
 					if (edit === undefined) {
 						var getCurrentDate = new Date(),
 							noteDate = (getCurrentDate.getMonth() + 1) + "/" + getCurrentDate.getDate() + "/" + store.get("year"),
@@ -227,8 +232,7 @@ DEBUG = true;
 							noteCategories,
 							noteDataCat = note.attr("data-category"),
 							temp = "",
-							i,
-							html;
+							i;
 
 						switch (noteDataCat) {
 						case "cat-bi":
@@ -255,6 +259,7 @@ DEBUG = true;
 						
 						html = '<h2 data-note-title="' + noteDataCat + '">' + noteTitle + '</h2><small data-note-date="' + noteDate + '" class="date">' + noteDate + '</small><ul class="quarter-select"><li><a href="#q1">Q1</a></li><li><a href="#q2">Q2</a></li><li><a href="#q3">Q3</a></li><li><a href="#q4">Q4</a></li><li class="shadow"></li></ul><textarea class="note-area"></textarea><ul class="toggle-list">' + temp + '</ul><div class="note-action"><a href="#" class="note-submit">Save!</a><a href="#" class="cancel">Cancel</a></div>';
 						base_ecosystem.selector.note_element.append(html);
+                        
 					} else {
 						
 						$("[data-id=" + edit.id + "]").addClass("editing");	
@@ -264,12 +269,11 @@ DEBUG = true;
 							topics += "<li><a href=\"#\">" + $(this).text() + "</a></li>";
 						});
 
-						var html = html = '<h2 data-note-title="' + edit.cat + '">' + edit.title + '</h2><small data-note-date="' + edit.date + '" class="date">' + edit.date + '</small><ul class="quarter-select"><li><a href="#q1">Q1</a></li><li><a href="#q2">Q2</a></li><li><a href="#q3">Q3</a></li><li><a href="#q4">Q4</a></li><li class="shadow"></li></ul><textarea class="note-area">' + edit.text + '</textarea><ul class="toggle-list">' + topics + '</ul><div class="note-action"><a href="#" class="note-submit">Save!</a><a href="#" class="cancel">Cancel</a></div>';
+						html = '<h2 data-note-title="' + edit.cat + '">' + edit.title + '</h2><small data-note-date="' + edit.date + '" class="date">' + edit.date + '</small><ul class="quarter-select"><li><a href="#q1">Q1</a></li><li><a href="#q2">Q2</a></li><li><a href="#q3">Q3</a></li><li><a href="#q4">Q4</a></li><li class="shadow"></li></ul><textarea class="note-area">' + edit.text + '</textarea><ul class="toggle-list">' + topics + '</ul><div class="note-action"><a href="#" class="note-submit">Save!</a><a href="#" class="cancel">Cancel</a></div>';
 						base_ecosystem.selector.note_element.addClass("active");
 						
 						$("[data-id=" + edit.id + "]").remove();
 						base_ecosystem.selector.note_element.append(html);
-						
 						
 					}	
 				},
@@ -282,7 +286,7 @@ DEBUG = true;
 				toggleNote : function (i) {
 					i.toggleClass("active");
 				},
-				placeNote : function (note, callback) {
+				placeNote : function (note) {
 					
 					var q = "",
 						c = "",
@@ -331,11 +335,11 @@ DEBUG = true;
 						qa = [];
 					
 						
-					$.each(c, function (index) {
+					$.each(c, function () {
 						ca.push($(this).text());
 					});
 					
-					$.each(q, function (index) {
+					$.each(q, function () {
 						qa.push($(this).text());
 					});
 					
@@ -359,9 +363,9 @@ DEBUG = true;
 						}); 
 					} else {
 						base_ecosystem.selector.note_element.find(".error").slideUp();
-						error = "<p class=\"error\">Please make sure you have atleast 1 topic, 1 quarter, and some text filled in to continue!</p>"
+						error = "<p class=\"error\">Please make sure you have atleast 1 topic, 1 quarter, and some text filled in to continue!</p>";
 						base_ecosystem.selector.note_element.append(error);
-					};
+					}
 					
 				},
 				showOverlay : function (i) {
@@ -415,21 +419,18 @@ DEBUG = true;
 					return (e) ? base_ecosystem.selector.wrapper_element.addClass("active show-" + i.attr("data-category") + " " + i.attr("data-category")) : base_ecosystem.selector.wrapper_element.attr("class", "");
 				}
 			}, 
-			export : function(type, i){
-				var $this = i || null, 
-					notes = store.get("notes") || null,
-					save_view;
+			exports : function(type){
+				var notes = store.get("notes") || null,
+					save_view,
+                    t = type.toLowerCase();
 					
-				if (notes != null) {
+				if (notes !==null) {
 					
-					switch(type){
-						case "json" || "JSON" || "js":
-							notes = JSON.stringify(notes);
-						break;
+					if(t === "json" || t === "js"){
+					    notes = JSON.stringify(notes);
 					}
 					
 					var style = "* {padding:0; margin:0;} pre {font-size:11px; white-space:normal; word-wrap:normal;}";
-					
 					save_view = window.open("", "print", "scrollbars=1,status=0,width=720,height=40");
                     save_view.document.write("<!DOCTYPE HTML><html><head><title>Export to JSON</title><style>"+ style +"</style></head><body><pre><code>"+ notes +"</code></pre></body></html>");
                     save_view.document.close();
