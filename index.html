@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8">
@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div id="new" class="hide">
-			<div class="form"><form><label for="enter_name">please enter your name</label><input type="text" placeholder="first last" autofocus/><input type="submit" value="Okay!"></form></div>
+			<div class="form"><label for="enter_name">please enter your name</label><input type="text" placeholder="first last" autofocus/><input type="submit" value="Okay!"></div>
 		</div>
 		<div id="wrapper">
 			<div id="header">
@@ -104,8 +104,9 @@
 		</div>
 		<script>
 			head.js(
-				{ "jquery" : "js/jquery.min.js" },
-				{ "store" : "js/store.min.js" },
+				{ "jquery"    : "js/jquery.min.js" },
+				{ "store"     : "js/store.min.js" },
+				{ "export"    : "js/jquery.export.js" },
 				{ "ecosystem" : "js/jquery.ecosystem.js" },
 				function(){
 					$.ecosystem({ 
